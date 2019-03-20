@@ -1,24 +1,21 @@
 package com.espresslabs.lyndafragmentsjava;
 
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
-    // This reference property will be lost during configuration change
-    // such as orientation change
-    private SimpleFragment fragment;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        fragment = new SimpleFragment();
     }
 
     public void addFragment(View view) {
+        SimpleFragment fragment = new SimpleFragment();
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.fragment_container, fragment)
@@ -26,6 +23,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void removeFragment(View view) {
+        // Retrieve the fragment from the Manager
+        Fragment fragment = getSupportFragmentManager()
+                .findFragmentById(R.id.fragment_container);
+
+        // check if fragment is valid and then remove it
         if (fragment != null) {
             getSupportFragmentManager()
                     .beginTransaction()
