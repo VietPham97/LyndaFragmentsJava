@@ -11,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements DetailFragment.FragmentListener {
 
+    public static final String TAG = "MainActivity";
     private boolean mTablet;
     private ViewGroup fragmentContainer;
 
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (mTablet == true) {
             FragmentManager fragmentManager = getSupportFragmentManager();
-            DetailActivityFragment fragment = new DetailActivityFragment();
+            DetailFragment fragment = new DetailFragment();
 
             // create fragment transaction
             fragmentManager.beginTransaction()
@@ -56,4 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onFragmentFinish(String firstName, String lastName, int age) {
+        Log.i(TAG, "onFragmentFinish: " + firstName + ", " + lastName + ", " + age);
+    }
 }
