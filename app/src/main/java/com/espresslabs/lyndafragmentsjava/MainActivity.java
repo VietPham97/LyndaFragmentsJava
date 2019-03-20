@@ -30,8 +30,10 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = getSupportFragmentManager()
                 .findFragmentByTag(FRAGMENT_TAG);
 
-        // check if fragment is valid and then remove it
+        // check if fragment is valid
         if (fragment != null) {
+            // pause and stop the fragment, but
+            // will NOT remove from the back stack
             getSupportFragmentManager()
                     .beginTransaction()
                     .remove(fragment)
