@@ -65,7 +65,7 @@ public class DetailFragment extends Fragment {
         String firstName = textFirstName.getText().toString();
         String lastName = textLastName.getText().toString();
         int age = Integer.valueOf(textAge.getText().toString());
-        
+
         mListener.onFragmentFinish(firstName, lastName, age);
     }
 

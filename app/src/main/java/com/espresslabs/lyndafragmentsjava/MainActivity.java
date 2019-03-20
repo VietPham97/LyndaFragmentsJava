@@ -61,5 +61,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onFragmentFinish(String firstName, String lastName, int age) {
         Log.i(TAG, "onFragmentFinish: " + firstName + ", " + lastName + ", " + age);
+
+        // remove the fragment on finish
+        DetailFragment fragment = (DetailFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.detail_fragment_container);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .remove(fragment)
+                .commit();
     }
 }
