@@ -7,19 +7,20 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
+    <TextView
+        android:id="@+id/text_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+        android:text="Hello World"
+        android:textSize="24sp" />
 
     <Button
-        android:id="@+id/button_add"
+        android:id="@+id/button_measure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Fragment"
+        android:text="Measure Screen"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:onClick="addFragment" />
+        android:onClick="onMeasureBtnClick" />
 
 </RelativeLayout>
