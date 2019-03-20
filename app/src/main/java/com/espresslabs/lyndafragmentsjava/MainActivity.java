@@ -7,6 +7,8 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String FRAGMENT_TAG = "fragment_tag";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,14 +20,14 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.fragment_container, fragment)
+                .add(R.id.fragment_container, fragment, FRAGMENT_TAG)
                 .commit();
     }
 
     public void removeFragment(View view) {
         // Retrieve the fragment from the Manager
         Fragment fragment = getSupportFragmentManager()
-                .findFragmentById(R.id.fragment_container);
+                .findFragmentByTag(FRAGMENT_TAG);
 
         // check if fragment is valid and then remove it
         if (fragment != null) {
