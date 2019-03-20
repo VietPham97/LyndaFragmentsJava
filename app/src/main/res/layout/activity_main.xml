@@ -14,12 +14,23 @@
         android:layout_centerInParent="true" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Fragment"
         android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:onClick="addFragment" />
+
+    <Button
+        android:id="@+id/button_remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remove Fragment"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:onClick="removeFragment" />
 
 </RelativeLayout>

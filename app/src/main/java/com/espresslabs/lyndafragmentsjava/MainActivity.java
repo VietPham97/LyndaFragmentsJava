@@ -6,6 +6,8 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
+    // This reference property will be lost during configuration change
+    // such as orientation change
     private SimpleFragment fragment;
 
     @Override
@@ -21,5 +23,14 @@ public class MainActivity extends AppCompatActivity {
                 .beginTransaction()
                 .add(R.id.fragment_container, fragment)
                 .commit();
+    }
+
+    public void removeFragment(View view) {
+        if (fragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .remove(fragment)
+                    .commit();
+        }
     }
 }
