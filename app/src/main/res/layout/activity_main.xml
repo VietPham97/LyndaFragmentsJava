@@ -7,12 +7,19 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <fragment
-        android:id="@+id/fragment_simple"
-        class="com.espresslabs.lyndafragmentsjava.SimpleFragment"
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        tools:layout="@layout/fragment_simple"/>
+        android:layout_centerInParent="true" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Fragment"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:onClick="addFragment" />
 
 </RelativeLayout>
