@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager()
                 .beginTransaction()
+                .addToBackStack(null)
                 .add(R.id.fragment_container, fragment, FRAGMENT_TAG)
                 .commit();
     }
