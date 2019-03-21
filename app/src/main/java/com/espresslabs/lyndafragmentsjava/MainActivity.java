@@ -1,14 +1,14 @@
 package com.espresslabs.lyndafragmentsjava;
 
+import android.content.DialogInterface;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
-
-    private boolean mTablet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,11 +17,27 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ViewGroup fragmentContainer = findViewById(R.id.detail_fragment_container);
-        mTablet = (fragmentContainer != null);
+        FloatingActionButton fab = findViewById(R.id.fab);
+        if (fab == null) throw new AssertionError();
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog();
+            }
+        });
+    }
 
-        TextView tvOut = findViewById(R.id.textOut);
-        tvOut.setText("Fragments side-by-side? " + mTablet);
+    private void showDialog() {
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Alert");
+        alertDialog.setMessage("Here's some important information!");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alertDialog.show();
     }
 
 }
