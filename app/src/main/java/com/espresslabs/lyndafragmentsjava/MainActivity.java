@@ -1,8 +1,6 @@
 package com.espresslabs.lyndafragmentsjava;
 
-import android.content.DialogInterface;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -28,16 +26,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showDialog() {
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle("Alert");
-        alertDialog.setMessage("Here's some important information!");
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        alertDialog.show();
+        AlertDialogFragment dialogFragment = new AlertDialogFragment();
+        dialogFragment.setCancelable(false); // force user to interact with the dialog
+        dialogFragment.show(getSupportFragmentManager(), "DIALOG_FRAGMENT");
     }
 
 }
