@@ -24,6 +24,16 @@ public class DetailFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static DetailFragment newInstance(Person person) {
+        
+        Bundle args = new Bundle();
+        args.putParcelable("PERSON_KEY", person);
+        
+        DetailFragment fragment = new DetailFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -46,6 +56,11 @@ public class DetailFragment extends Fragment {
         textLastName = rootView.findViewById(R.id.textLastName);
         textAge = rootView.findViewById(R.id.textAge);
 
+        Person person = getArguments().getParcelable("PERSON_KEY");
+        textFirstName.setText(person.getFirstName());
+        textLastName.setText(person.getLastName());
+        textAge.setText(String.valueOf(person.getAge()));
+
         Button doneButton = rootView.findViewById(R.id.button_done);
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,10 +81,11 @@ public class DetailFragment extends Fragment {
         String lastName = textLastName.getText().toString();
         int age = Integer.valueOf(textAge.getText().toString());
 
-        mListener.onFragmentFinish(firstName, lastName, age);
+        Person person = new Person(firstName, lastName, age);
+        mListener.onFragmentFinish(person);
     }
 
     public interface FragmentListener {
-        void onFragmentFinish(String firstName, String lastName, int age);
+        void onFragmentFinish(Person person);
     }
 }
