@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements DataEntryDialog.DataEntryListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,4 +35,9 @@ public class MainActivity extends AppCompatActivity {
         dialog.show(getSupportFragmentManager(), "DIALOG_FRAGMENT");
     }
 
+    @Override
+    public void onDataEntryComplete(Person person) {
+        Toast.makeText(this, "You entered " + person.getFirstName()
+                + " " + person.getLastName(), Toast.LENGTH_SHORT).show();
+    }
 }

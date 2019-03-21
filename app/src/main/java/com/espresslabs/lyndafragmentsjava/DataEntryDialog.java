@@ -1,5 +1,6 @@
 package com.espresslabs.lyndafragmentsjava;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +16,9 @@ public class DataEntryDialog extends DialogFragment {
     public static final String PERSON_KEY = "PERSON_KEY";
     EditText etFirstName, etLastName, etAge;
 
+    // Reference to the activity via interface
+    private DataEntryListener mListener;
+
     public static DataEntryDialog newInstance(Person person) {
 
         Bundle args = new Bundle();
@@ -23,6 +27,14 @@ public class DataEntryDialog extends DialogFragment {
         DataEntryDialog fragment = new DataEntryDialog();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (!(context instanceof DataEntryListener)) throw new AssertionError();
+        mListener = (DataEntryListener) context;
     }
 
     @Nullable
@@ -45,7 +57,7 @@ public class DataEntryDialog extends DialogFragment {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dismiss(); // dismiss a dialog
+                saveData();
             }
         });
         Button btnCancel = rootView.findViewById(R.id.btnCancel);
@@ -57,5 +69,19 @@ public class DataEntryDialog extends DialogFragment {
         });
 
         return rootView;
+    }
+
+    private void saveData() {
+        Person person = new Person();
+        person.setFirstName(etFirstName.getText().toString());
+        person.setLastName(etLastName.getText().toString());
+        person.setAge(Integer.valueOf(etAge.getText().toString()));
+
+        mListener.onDataEntryComplete(person);
+        dismiss();
+    }
+
+    public interface DataEntryListener {
+        void onDataEntryComplete(Person person);
     }
 }
