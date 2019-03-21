@@ -26,9 +26,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showDialog() {
-        AlertDialogFragment dialogFragment = new AlertDialogFragment();
-        dialogFragment.setCancelable(false); // force user to interact with the dialog
-        dialogFragment.show(getSupportFragmentManager(), "DIALOG_FRAGMENT");
+        DataEntryDialog dialog = new DataEntryDialog();
+        dialog.show(getSupportFragmentManager(), "DIALOG_FRAGMENT");
     }
 
 }
